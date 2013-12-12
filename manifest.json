@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "Chrome vim navigation",
+    "description": "",
+    "version": "0.1",
+
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+
+    "commands": {
+        "go_forward_one_tab": {
+            "suggested_key": {
+                "default": "Ctrl+G"
+            },
+            "description": "go forward one tab"
+        }
+    },
+
+    "background": {
+        "scripts" : [ "src/background.js" ]
+    },
+
+    "content_scripts": [
+    {
+        "matches": ["*://*/*"],
+        "js": ["src/fnMap.js", "src/commandqueue.js", "src/contentscript.js"]
+    }
+    ]
+}
+    

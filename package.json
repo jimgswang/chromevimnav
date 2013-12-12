@@ -1,0 +1,8 @@
+{
+    "name": "chromevimnav",
+    "description": "vim style navigation for chrome",
+    "author": "Jim Wang jim.gs.wang@gmail.com",
+    "dependencies": {
+        "phantom-jasmine": "0.3.0"
+    }
+}
