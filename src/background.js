@@ -3,12 +3,31 @@ chrome.runtime.onMessage.addListener(
         console.log(sender.tab ?
             'cs' + sender.tab.url :
             'from the extension');
-
-
-        window.scrollBy(0, 50);
+        tabNext();
         sendResponse({farewell: 'goodbye'});
     }
 );
 
-//function scrollPageDown() {
+var tabNext = function tabNext() {
+
+    chrome.windows.getCurrent({populate: true}, function (wind) {
+        var totalTabs = wind.tabs.length;
+        var cTab = wind.tabs.filter(function(tab) {
+            return tab.active === true;
+        });
+        var index = cTab[0].index,
+            nextIndex = index + 1;
+
+        if(nextIndex === totalTabs) {
+            nextIndex = 0;
+        }
+
+        var nextTab = wind.tabs.filter(function(tab) {
+            return tab.index === nextIndex;
+        });
+
+        chrome.tabs.update(nextTab[0].id, {active: true});
+
+    });
+}
     

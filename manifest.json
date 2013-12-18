@@ -17,6 +17,8 @@
         }
     },
 
+    "permissions": ["tabs"],
+
     "background": {
         "scripts" : [ "src/background.js" ]
     },

@@ -6,10 +6,13 @@ var fnMap = (function() {
     return {
         minCodeLength: 3,
 
-        '072': scrollLeft,     // h
-        '074': scrollDown,     // j
-        '075': scrollUp,       // k
-        '076': scrollRight     // l
+        functions : {
+            '072': scrollLeft,     // h
+            '074': scrollDown,     // j
+            '075': scrollUp,        // k
+            '076': scrollRight,     // l
+            '071084' /* gt */ : tabForward
+        }
     };
 
     function scrollLeft() {
@@ -26,6 +29,17 @@ var fnMap = (function() {
 
     function scrollRight() {
         window.scrollBy(50, 0);
+    }
+
+    function tabForward() {
+        var options = {
+            method: 'tabForward',
+        };
+
+        console.log('tab forward');
+        chrome.runtime.sendMessage(options, function(response) {
+            console.log(response);
+        });
     }
 }()); 
         

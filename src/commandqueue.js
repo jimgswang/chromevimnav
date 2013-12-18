@@ -6,14 +6,26 @@ function CmdQ(fnMap) {
 CmdQ.prototype.appendCode = function(keyCode) {
     var missingLength = this.fnMap.minCodeLength - keyCode.toString().length;
     var code = Array(missingLength + 1).join('0') + keyCode.toString();
-    this.queue.push(code);
+    var arr = Object.keys(this.fnMap.functions);
+
+    var self = this;
+    var isNewCodeValid = arr.some(function(item) {
+        return ~item.indexOf(self.qToString() + code);
+    });
+
+    if(isNewCodeValid)
+        this.queue.push(code);
+    else {
+        console.log('cleared');
+        this.clear();
+    }
 };
 
 CmdQ.prototype.getRunnable = function() {
     var cmd = this.qToString();
 
-    if(typeof this.fnMap[cmd] === 'function') {
-        return this.fnMap[cmd];
+    if(typeof this.fnMap.functions[cmd] === 'function') {
+        return this.fnMap.functions[cmd];
     }
     return undefined;
 };
