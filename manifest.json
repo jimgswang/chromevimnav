@@ -24,7 +24,7 @@
     "content_scripts": [
     {
         "matches": ["*://*/*"],
-        "js": ["src/fnMap.js", "src/commandqueue.js", "src/contentscript.js"]
+        "js": ["lib/keyboardjs/keyboard.js", "src/fnMap.js", "src/commandqueue.js", "src/contentscript.js"]
     }
     ]
 }
