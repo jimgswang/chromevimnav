@@ -1,0 +1,3 @@
+define({
+    scrollAmount: 50
+});
